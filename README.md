@@ -1,12 +1,25 @@
-otomo-physical-ai/
-├── README.md               # プロジェクト概要、理念、チーム紹介、ポスター連携情報
-├── LICENSE                 # Apache License 2.0（GitHubで自動生成）
-├── docs/                   # ドキュメント類
-│   ├── ethics_guide.md     # プライバシー保護・医師法/税理士法リスク対策ルール
-│   └── fieldwork_notes.md  # オートエスノグラフィー（当事者・現場観察記録の要約）
-├── prompts/                # 対話シナリオ・プロンプト設計
-│   ├── system_prompts.txt  # 「オトモ」のペルソナ（弱いロボット論に基づく対話設計）
-│   └── qa_rag_flow.md      # 公的健康Q&Aを参照するRAGナビゲーションの設計思想
-└── prototype/              # システム構成・コード（準備できたものから順次格納）
-    ├── system_architecture.png  # ハード構成図（Google Home＋センサー等の連携図）
-    └── app.py                   # Gradio / Streamlit等のWebモックアップコード（任意）
+プロジェクト概要（Project Overview）
+
+プロジェクト名：人生の先輩に教わる後輩AI「オトモ」
+
+所属：ZEN大学（指導教員：エルナンデス・アルバロ・ダビド講師）
+
+概要：超高齢社会における知恵の継承と、音声を介した環境認識・見守りを両立するPhysical AIプロトタイプ。
+
+設計思想・アプローチ（Philosophy & Methodology）
+
+岡田美智男教授の「弱いロボット論」を応用した、高齢者が「教える側（師匠）」になる関係性デザイン。
+
+実父の介護現場および地域フィールドワークに基づくオートエスノグラフィー（質的調査）の実践。
+
+システム構成（System Configuration）
+
+COTS（市販デバイス：Google Home／スマートスピーカー等）とLLM APIの統合。
+
+WBGT等の環境認識と音声フィードバックによる安全声かけ。
+
+ライセンスとクレジット（License & Credits）
+
+本成果物は Apache License 2.0 のもとで公開しています。
+
+「本プロジェクトは、Challenge ATOM（公益財団法人長寿科学振興財団・Google.org支援）の理念に基づき研究・開発を進めています」という謝辞・関連表記の明記。
