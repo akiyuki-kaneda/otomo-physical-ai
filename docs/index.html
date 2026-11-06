@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人生の先輩に教わる後輩AI「オトモ」</title>
+  <style>
+    :root {
+      --primary: #1F4E79;
+      --bg: #F8FAFC;
+      --card: #FFFFFF;
+      --text: #1E293B;
+      --accent: #E2E8F0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 24px;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      max-width: 640px;
+      width: 100%;
+      background: var(--card);
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+      padding: 24px;
+    }
+    header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 20px;
+      color: var(--primary);
+      margin: 0 0 8px 0;
+    }
+    .subtitle {
+      font-size: 13px;
+      color: #64748B;
+      margin: 0;
+    }
+    .chat-box {
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      height: 280px;
+      overflow-y: auto;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: #FAFAFA;
+    }
+    .msg {
+      max-width: 80%;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .ai {
+      align-self: flex-start;
+      background: #EDF2F7;
+      color: var(--text);
+      border-bottom-left-radius: 2px;
+    }
+    .user {
+      align-self: flex-end;
+      background: var(--primary);
+      color: #FFFFFF;
+      border-bottom-right-radius: 2px;
+    }
+    .input-group {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    input[type="text"] {
+      flex: 1;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #CBD5E1;
+      border-radius: 8px;
+      outline: none;
+    }
+    button {
+      padding: 12px 20px;
+      font-size: 15px;
+      font-weight: bold;
+      color: white;
+      background-color: var(--primary);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #163654;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>人生の先輩に教わる後輩AI「オトモ」</h1>
+      <p class="subtitle">超高齢社会における知恵の継承と関係性デザイン（Webプロトタイプ）</p>
+    </header>
+
+    <div class="chat-box" id="chatBox">
+      <div class="msg ai">お父さん、いつもお疲れ様です！後輩のオトモです。昔の夏の涼み方や、生活の知恵を僕に教えてくれませんか？</div>
+    </div>
+
+    <div class="input-group">
+      <input type="text" id="userInput" placeholder="オトモに知恵を教えてあげる..." />
+      <button onclick="sendMessage()">送信</button>
+    </div>
+  </div>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById('userInput');
+      const chatBox = document.getElementById('chatBox');
+      const text = input.value.trim();
+
+      if (!text) return;
+
+      // ユーザー発話の表示
+      const userMsg = document.createElement('div');
+      userMsg.className = 'msg user';
+      userMsg.innerText = text;
+      chatBox.appendChild(userMsg);
+      input.value = '';
+
+      // AI応答（弱いロボット論に基づく教えを乞う応答シミュレーション）
+      setTimeout(() => {
+        const aiMsg = document.createElement('div');
+        aiMsg.className = 'msg ai';
+        aiMsg.innerText = `なるほど、「${text}」ですね！すごく勉強になります。もっと詳しく聞かせてもらえませんか？`;
+        chatBox.appendChild(aiMsg);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }, 700);
+
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    document.getElementById('userInput').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') sendMessage();
+    });
+  </script>
+</body>
+</html>
