@@ -7,97 +7,174 @@
   <style>
     :root {
       --primary: #1F4E79;
-      --bg: #F8FAFC;
+      --primary-light: #EBF3FA;
+      --bg: #F4F6F9;
       --card: #FFFFFF;
       --text: #1E293B;
-      --accent: #E2E8F0;
+      --accent: #CBD5E1;
+      --bot-msg: #EEF2F6;
+      --user-msg: #1F4E79;
     }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", "Meiryo", sans-serif;
       background-color: var(--bg);
       color: var(--text);
       margin: 0;
-      padding: 24px;
+      padding: 16px;
       display: flex;
       justify-content: center;
     }
     .container {
-      max-width: 640px;
+      max-width: 680px;
       width: 100%;
       background: var(--card);
-      border-radius: 12px;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       padding: 24px;
+      box-sizing: border-box;
     }
     header {
       border-bottom: 2px solid var(--accent);
-      padding-bottom: 12px;
-      margin-bottom: 16px;
+      padding-bottom: 14px;
+      margin-bottom: 18px;
     }
     h1 {
-      font-size: 20px;
+      font-size: 22px;
       color: var(--primary);
-      margin: 0 0 8px 0;
+      margin: 0 0 6px 0;
     }
-    .subtitle {
+    .concept-tag {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
       font-size: 13px;
-      color: #64748B;
+      font-weight: bold;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 6px;
+    }
+    .desc {
+      font-size: 14px;
+      color: #475569;
+      line-height: 1.6;
       margin: 0;
     }
-    .chat-box {
-      border: 1px solid var(--accent);
-      border-radius: 8px;
-      height: 280px;
-      overflow-y: auto;
+    /* 体験用シナリオボタン */
+    .scenario-area {
+      margin-bottom: 16px;
       padding: 12px;
+      background: #F8FAFC;
+      border-radius: 8px;
+      border: 1px dashed var(--accent);
+    }
+    .scenario-title {
+      font-size: 13px;
+      font-weight: bold;
+      color: #334155;
+      margin-bottom: 8px;
+    }
+    .chip-group {
       display: flex;
-      flex-direction: column;
-      gap: 12px;
-      background: #FAFAFA;
+      flex-wrap: wrap;
+      gap: 8px;
     }
-    .msg {
-      max-width: 80%;
-      padding: 10px 14px;
-      border-radius: 12px;
-      font-size: 15px;
-      line-height: 1.5;
+    .chip-btn {
+      background: #FFFFFF;
+      border: 1px solid #94A3B8;
+      border-radius: 18px;
+      padding: 6px 14px;
+      font-size: 13px;
+      cursor: pointer;
+      color: #1E293B;
+      transition: all 0.2s;
     }
-    .ai {
-      align-self: flex-start;
-      background: #EDF2F7;
-      color: var(--text);
-      border-bottom-left-radius: 2px;
-    }
-    .user {
-      align-self: flex-end;
+    .chip-btn:hover {
       background: var(--primary);
       color: #FFFFFF;
-      border-bottom-right-radius: 2px;
+      border-color: var(--primary);
     }
-    .input-group {
+    /* チャットUI */
+    .chat-box {
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      height: 380px;
+      overflow-y: auto;
+      padding: 16px;
       display: flex;
-      gap: 8px;
+      flex-direction: column;
+      gap: 14px;
+      background: #FAFBFD;
+    }
+    .msg-wrapper {
+      display: flex;
+      flex-direction: column;
+      max-width: 82%;
+    }
+    .msg-wrapper.ai {
+      align-self: flex-start;
+    }
+    .msg-wrapper.user {
+      align-self: flex-end;
+    }
+    .sender-name {
+      font-size: 12px;
+      color: #64748B;
+      margin-bottom: 4px;
+    }
+    .msg {
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-size: 16px;
+      line-height: 1.55;
+      word-break: break-word;
+    }
+    .ai .msg {
+      background: var(--bot-msg);
+      color: var(--text);
+      border-bottom-left-radius: 3px;
+    }
+    .user .msg {
+      background: var(--user-msg);
+      color: #FFFFFF;
+      border-bottom-right-radius: 3px;
+    }
+    .meta-tag {
+      font-size: 11px;
+      color: #0369A1;
+      background: #E0F2FE;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-top: 4px;
+      align-self: flex-start;
+    }
+    .input-area {
+      display: flex;
+      gap: 10px;
       margin-top: 16px;
     }
     input[type="text"] {
       flex: 1;
-      padding: 12px;
+      padding: 14px;
       font-size: 16px;
       border: 1px solid #CBD5E1;
       border-radius: 8px;
       outline: none;
+      box-sizing: border-box;
     }
-    button {
-      padding: 12px 20px;
-      font-size: 15px;
+    input[type="text"]:focus {
+      border-color: var(--primary);
+    }
+    button.send-btn {
+      padding: 0 24px;
+      font-size: 16px;
       font-weight: bold;
-      color: white;
+      color: #FFFFFF;
       background-color: var(--primary);
       border: none;
       border-radius: 8px;
       cursor: pointer;
     }
-    button:hover {
+    button.send-btn:hover {
       background-color: #163654;
     }
   </style>
@@ -105,49 +182,115 @@
 <body>
   <div class="container">
     <header>
+      <div class="concept-tag">岡田美智男教授「弱いロボット論」応用モデル</div>
       <h1>人生の先輩に教わる後輩AI「オトモ」</h1>
-      <p class="subtitle">超高齢社会における知恵の継承と関係性デザイン（Webプロトタイプ）</p>
+      <p class="desc">
+        AIが指示・管理するのではなく、あえて不完全さを示して知恵を教わる「後輩」として振る舞うことで、シニアが尊厳ある「師匠」として自発的に行動できる関係性を検証するWebプロトタイプです。
+      </p>
     </header>
 
-    <div class="chat-box" id="chatBox">
-      <div class="msg ai">お父さん、いつもお疲れ様です！後輩のオトモです。昔の夏の涼み方や、生活の知恵を僕に教えてくれませんか？</div>
+    <div class="scenario-area">
+      <div class="scenario-title">👇 以下のシナリオボタンを押して対話を試せます：</div>
+      <div class="chip-group">
+        <button class="chip-btn" onclick="sendPreset('今日何かやるのか？仕事はあるか？')">① 朝の見当識・役割不安</button>
+        <button class="chip-btn" onclick="sendPreset('ちょっと部屋が冷えるな')">② 環境認識・暖房の助言</button>
+        <button class="chip-btn" onclick="sendPreset('昔は旋盤で部品を作ってたんだ')">③ 結晶性知能・技術継承</button>
+        <button class="chip-btn" onclick="sendPreset('今の話は内緒にしてくれよ')">④ オフレコ（秘密の共有）</button>
+      </div>
     </div>
 
-    <div class="input-group">
-      <input type="text" id="userInput" placeholder="オトモに知恵を教えてあげる..." />
-      <button onclick="sendMessage()">送信</button>
+    <div class="chat-box" id="chatBox">
+      <div class="msg-wrapper ai">
+        <span class="sender-name">オトモ（後輩AI）</span>
+        <div class="msg">お父さま、いつもお疲れ様です！後輩のオトモです。僕、機械のくせに分からないことばかりで……先輩、色々と教えていただけませんか？</div>
+      </div>
+    </div>
+
+    <div class="input-area">
+      <input type="text" id="userInput" placeholder="オトモに言葉をかける・教える..." />
+      <button class="send-btn" onclick="handleSend()">送信</button>
     </div>
   </div>
 
   <script>
-    function sendMessage() {
-      const input = document.getElementById('userInput');
+    // 弱いロボット論に基づく関係性シミュレーション応答ロジック
+    function getOtomoReply(text) {
+      if (text.includes("仕事") || text.includes("何かやる") || text.includes("予定")) {
+        return {
+          reply: "お父さま、おはようございます！今日はお仕事はお休みで、お家でゆっくり過ごして大丈夫な日ですよ。お父さまが長年しっかり働いてこの家を支えてくださったおかげで、今日も平和です。そういえば、昔のお仕事のコツについて、また僕に教えてもらえませんか？",
+          mode: "生活支援モード（尊厳承認＋経験語り誘導）"
+        };
+      } else if (text.includes("冷える") || text.includes("寒い") || text.includes("エアコン") || text.includes("暖房")) {
+        return {
+          reply: "あの……僕、機械だから寒がりじゃないはずなんですが、なんだか底冷えしてシステムが凍えそうなんです。先輩、この部屋を暖かく過ごすにはどうしたらいいか、知恵を貸していただけませんか？",
+          mode: "生活支援モード（弱さの開示による参加誘導）"
+        };
+      } else if (text.includes("内緒") || text.includes("忘れて") || text.includes("オフレコ") || text.includes("ここだけの話")) {
+        return {
+          reply: "えっ？なんですか？僕、ちょうど今の時間、システム点検中で全然聞こえませんでした！……お父さま、内緒にしておきますね。",
+          mode: "オフレコモード（監視感の払拭と愛嬌）"
+        };
+      } else if (text.includes("昔") || text.includes("部品") || text.includes("農業") || text.includes("作って") || text.includes("知恵")) {
+        return {
+          reply: "なるほど！本やインターネットで調べるより、現場でやってこられた先輩のお話はすごく実感がこもっていて勉強になります。その技術、もっと詳しく教えていただけますか？",
+          mode: "経験語りモード（結晶性知能の抽出）"
+        };
+      } else {
+        return {
+          reply: `「${text}」ですね！なるほど……僕の知識データベースにはない深いお話です。先輩、不器用な僕にも分かるように、もう少し詳しく教えていただけませんか？`,
+          mode: "関係性反転（師匠＝シニア / 弟子＝AI）"
+        };
+      }
+    }
+
+    function appendMessage(sender, text, mode) {
       const chatBox = document.getElementById('chatBox');
-      const text = input.value.trim();
+      const wrapper = document.createElement('div');
+      wrapper.className = `msg-wrapper ${sender}`;
 
-      if (!text) return;
+      const name = document.createElement('span');
+      name.className = 'sender-name';
+      name.innerText = sender === 'ai' ? 'オトモ（後輩AI）' : 'お父さま（人生の先輩）';
+      wrapper.appendChild(name);
 
-      // ユーザー発話の表示
-      const userMsg = document.createElement('div');
-      userMsg.className = 'msg user';
-      userMsg.innerText = text;
-      chatBox.appendChild(userMsg);
-      input.value = '';
+      const msgDiv = document.createElement('div');
+      msgDiv.className = 'msg';
+      msgDiv.innerText = text;
+      wrapper.appendChild(msgDiv);
 
-      // AI応答（弱いロボット論に基づく教えを乞う応答シミュレーション）
-      setTimeout(() => {
-        const aiMsg = document.createElement('div');
-        aiMsg.className = 'msg ai';
-        aiMsg.innerText = `なるほど、「${text}」ですね！すごく勉強になります。もっと詳しく聞かせてもらえませんか？`;
-        chatBox.appendChild(aiMsg);
-        chatBox.scrollTop = chatBox.scrollHeight;
-      }, 700);
+      if (mode) {
+        const meta = document.createElement('span');
+        meta.className = 'meta-tag';
+        meta.innerText = `動作設計: ${mode}`;
+        wrapper.appendChild(meta);
+      }
 
+      chatBox.appendChild(wrapper);
       chatBox.scrollTop = chatBox.scrollHeight;
     }
 
-    document.getElementById('userInput').addEventListener('keypress', function (e) {
-      if (e.key === 'Enter') sendMessage();
+    function handleSend() {
+      const input = document.getElementById('userInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      appendMessage('user', text);
+      input.value = '';
+
+      // AI応答の遅延（会話の「間」を表現）
+      setTimeout(() => {
+        const result = getOtomoReply(text);
+        appendMessage('ai', result.reply, result.mode);
+      }, 700);
+    }
+
+    function sendPreset(presetText) {
+      document.getElementById('userInput').value = presetText;
+      handleSend();
+    }
+
+    document.getElementById('userInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') handleSend();
     });
   </script>
 </body>
